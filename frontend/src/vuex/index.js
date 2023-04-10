@@ -17,10 +17,12 @@ const store = createStore({
     actions: {
         loginAccount(context, account) {
             context.commit('setLoginAccount', account)
+            localStorage.setItem('loginAccount', account.CN_id)
         },
 
         logoutAccount(context) {
             context.commit('setLoginAccount', null)
+            localStorage.removeItem('loginAccount')
         }
     }
 })

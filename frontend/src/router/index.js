@@ -21,11 +21,21 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: () => import('../views/AdminView.vue')
+  }, 
+  {
+    path: '/:sc_id/ticket/book',
+    name: 'book-ticket',
+    component: () => import('../views/BookTicketView.vue')
   },
   {
-    path: '/:movieId',
+    path: '/:sc_id/:movieId',
     name: 'movieInfo',
     component: () => import('../views/MovieView.vue')
+  },
+  {
+    path: '/profile/edit',
+    name: 'edit-profile',
+    component: () => import('../views/EditProfileView.vue')
   },
 ]
 

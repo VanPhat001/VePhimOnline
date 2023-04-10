@@ -7,10 +7,10 @@
 
                 <div class="row">
                     <div class="col p-1">
-                        <button class="btn btn-primary w-100">Đặt vé</button>
+                        <router-link :to="{name: 'book-ticket', params: { sc_id: movie.SC_id }}" class="btn btn-primary w-100">Đặt vé</router-link>
                     </div>
                     <div class="col p-1">
-                        <router-link :to="{ name: 'movieInfo', params: { movieId: movie.Phim_id } }"
+                        <router-link :to="{ name: 'movieInfo', params: { movieId: movie.Phim_id, sc_id: movie.SC_id } }"
                             class="btn btn-primary w-100">Chi
                             tiết</router-link>
                     </div>

@@ -11,14 +11,35 @@ class ServiceProvider {
         })).data
     }
 
+    async getAccountById(id) {
+        return (await this.api('account').get(`/${id}`)).data
+    }
+
     async createAccount({name, city, dateOfBirth, username, password, phoneNumber, role='user', avatar}) {
         return (await this.api('account').post('/', {
             name, city, dateOfBirth, username, password, phoneNumber, role, avatar
         })).data
     }
 
+    async updateAccount(id, {name, city, dateOfBirth, username, password, phoneNumber, role, avatar}) {
+        return (await this.api('account').patch(`/${id}`, {
+            CN_hoTen : name, 
+            CN_thanhPho : city, 
+            CN_ngaySinh : dateOfBirth, 
+            CN_userName: username, 
+            CN_passWord : password, 
+            CN_sdt : phoneNumber, 
+            CN_phanQuyen : role, 
+            CN_avatar : avatar,
+        })).data
+    }
+
     async getAllSuatChieuByDate(dateFrom, dateTo) {
         return (await this.api('suatChieu').get(`/${dateFrom}/to/${dateTo}`)).data
+    }
+
+    async getPhimById(movieId) {
+        return (await this.api('phim').get(`/${movieId}`)).data
     }
 }
 

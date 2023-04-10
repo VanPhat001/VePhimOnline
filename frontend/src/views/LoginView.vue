@@ -45,7 +45,7 @@ export default {
 
                     if (response.length > 0) {
                         const account = response[0]
-                        alert('Đăng nhập thành công!!!')
+                        // alert('Đăng nhập thành công!!!')
 
                         this.$store.dispatch('loginAccount', account)
                         this.$router.push({ name: 'home'})
