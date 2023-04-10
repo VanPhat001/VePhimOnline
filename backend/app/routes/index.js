@@ -52,8 +52,24 @@ router.route('/info/movie/:movieId/timeFrom/:timeFrom')
                 queryResult.phongResult = phongResult
                 queryResult.trangThaiResult = trangThaiResult
 
-                const data = `[${phongResult.map(phong => `'${phong.Phong_id}'`).join(',')}]`
-                console.log(data)
+                const data1 = `(${phongResult.map(phong => `'${phong.Phong_id}'`).join(',')})`
+                const data2 = `(${phongResult.map(phong => `'${phong.Rap_id}'`).join(',')})`
+                // console.log({data, data2})
+
+                const queryString6 = `select * from Ghe where Phong_id in ${data1}`
+                const queryString7 = `select * from Rap where Rap_id in ${data2}`
+                // console.log(queryString6, queryString7)
+
+                const task3 = [
+                    MySQL.executeQuery(queryString6),
+                    MySQL.executeQuery(queryString7)
+                ]
+
+                return Promise.all(task3)
+            })
+            .then(([gheResult, rapResult]) => {
+                queryResult.gheResult = gheResult
+                queryResult.rapResult = rapResult
 
                 res.send(queryResult)
             })
