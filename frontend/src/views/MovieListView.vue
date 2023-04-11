@@ -1,7 +1,7 @@
 <template>
     <div class="movie-list-view">
 
-        <input @keyup="findMovies(searchText)" type="text" class="my-4 w-100 p-2" placeholder="Nhập tên phim..." v-model="searchText">
+        <input @keyup="findMovies(searchText)" type="text" class="form-control my-4 w-100 p-2" placeholder="Nhập tên phim..." v-model="searchText">
 
         <table class="table">
             <thead class="thead-light">

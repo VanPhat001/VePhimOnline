@@ -50,6 +50,10 @@ class ServiceProvider {
         return (await this.api('info').get(`/movie/${movieId}/timeFrom/${timeFrom}`)).data
     }
 
+    async getAllPhong() {
+        return (await this.api('phong').get('/')).data
+    }
+
     async insertPhim({ Phim_ten, Phim_doTuoi, Phim_moTa, Phim_theLoai, Phim_poster }) {
         return (await this.api('phim').post('/', {
             Phim_ten, Phim_doTuoi, Phim_moTa, Phim_theLoai, Phim_poster

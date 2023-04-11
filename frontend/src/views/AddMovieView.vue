@@ -8,35 +8,35 @@
                     <div class="row mt-4">
                         <div class="col">
                             <label for="">Tên</label>
-                            <input type="text" v-model="movie.name" required>
+                            <input class="form-control" type="text" v-model="movie.name" required>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
                             <label for="">Poster</label>
-                            <input type="text" v-model="movie.poster" required>
+                            <input class="form-control" type="text" v-model="movie.poster" required>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
                             <label for="">Thể loại</label>
-                            <input type="text" v-model="movie.category" required>
+                            <input class="form-control" type="text" v-model="movie.category" required>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
                             <label for="">Mô tả</label>
-                            <textarea type="text" row="3" v-model="movie.description" required></textarea>
+                            <textarea class="form-control" type="text" row="3" v-model="movie.description" required></textarea>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
                             <label for="">Giới hạn độ tuổi</label>
-                            <input type="number" min="0" v-model="movie.limitAge" required>
+                            <input class="form-control" type="number" min="0" v-model="movie.limitAge" required>
                         </div>
                     </div>
 
