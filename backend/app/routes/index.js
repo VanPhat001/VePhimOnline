@@ -4,11 +4,14 @@ const router = express.Router()
 const accountRouter = require('./account.route')
 const phimRouter = require('./phim.route')
 const suatChieuRouter = require('./suatChieu.route')
+const veRouter = require('./ve.route')
 const MySQL = require('../utils/MySQL')
+
 
 router.use('/account', accountRouter)
 router.use('/phim', phimRouter)
 router.use('/suatChieu', suatChieuRouter)
+router.use('/ve', veRouter)
 
 router.route('/info/movie/:movieId/timeFrom/:timeFrom')
     .get((req, res, next) => {

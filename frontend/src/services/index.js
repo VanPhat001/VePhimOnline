@@ -41,6 +41,26 @@ class ServiceProvider {
     async getPhimById(movieId) {
         return (await this.api('phim').get(`/${movieId}`)).data
     }
+
+    async getAllPhim() {
+        return (await this.api('phim').get('/')).data
+    }
+
+    async getPhimInfoToBookTicket(movieId, timeFrom) {
+        return (await this.api('info').get(`/movie/${movieId}/timeFrom/${timeFrom}`)).data
+    }
+
+    async insertPhim({ Phim_ten, Phim_doTuoi, Phim_moTa, Phim_theLoai, Phim_poster }) {
+        return (await this.api('phim').post('/', {
+            Phim_ten, Phim_doTuoi, Phim_moTa, Phim_theLoai, Phim_poster
+        })).data
+    }
+
+    async insertVe({Ve_thoiGianDat, CN_id, Ghe_id, SC_id}) {
+        return (await this.api('ve').post('/', {
+            Ve_thoiGianDat, CN_id, Ghe_id, SC_id
+        })).data
+    }
 }
 
 export default new ServiceProvider()

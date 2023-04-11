@@ -14,7 +14,7 @@
                     <hr>
                     <p><span class="font-weight-bold">Mã phim:</span> <span>{{ movie.Phim_id }}</span></p>
                     <hr>
-                    <router-link class="btn btn-primary px-5" :to="{name: 'book-ticket', params: { sc_id: scId }}">Đặt vé</router-link>
+                    <router-link class="btn btn-primary px-5" :to="{name: 'book-ticket', params: { movieId: movie.Phim_id }}">Đặt vé</router-link>
                 </div>
             </div>
 
@@ -36,9 +36,6 @@ export default {
     computed: {
         movieId() {
             return this.$route.params.movieId
-        },
-        scId() {
-            return this.$route.params.sc_id
         }
     },
 
