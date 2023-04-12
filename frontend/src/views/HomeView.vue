@@ -41,6 +41,9 @@ export default {
         servicesProvider.getAllSuatChieuByDate(firstday, lastday)
             .then(data => {
                 this.movies = data
+                // for (let i = 0; i < 10; i++) {
+                //     this.movies.push(this.movies[3])
+                // }
             })
             .catch(err => {
                 console.log(err);

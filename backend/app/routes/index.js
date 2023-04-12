@@ -32,14 +32,19 @@ router.route('/info/movie/:movieId/timeFrom/:timeFrom')
             MySQL.executeQuery(queryString1),
             MySQL.executeQuery(queryString2),
             MySQL.executeQuery(queryString3)
-
         ]
+
+        console.log({ queryString1, queryString2, queryString3 })
+
 
         Promise.all(task1)
             .then(([phimResult, suatChieuResult, giaGheResult]) => {
                 queryResult.phimResult = phimResult
                 queryResult.suatChieuResult = suatChieuResult
                 queryResult.giaGheResult = giaGheResult
+
+                console.log({ queryResult })
+
 
                 const phongId = suatChieuResult[0].Phong_id
                 const suatChieuId = suatChieuResult[0].SC_id
@@ -80,6 +85,20 @@ router.route('/info/movie/:movieId/timeFrom/:timeFrom')
             })
             .catch(err => next(err))
 
+    })
+
+router.route('/info/doanhthu/:dateBegin/to/:dateEnd')
+    .get(async (req, res, next) => {
+        console.log('[GET] call revenueStatistics()');
+        const { dateBegin, dateEnd } = req.params
+        const queryString = `call revenueStatistics('${dateBegin}', '${dateEnd}')`
+
+        try {
+            const result = await MySQL.executeQuery(queryString)
+            res.send(result[0])
+        } catch (error) {
+            next(error)
+        }
     })
 
 module.exports = router

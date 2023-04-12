@@ -71,6 +71,10 @@ class ServiceProvider {
             Ve_thoiGianDat, CN_id, Ghe_id, SC_id
         })).data
     }
+
+    async revenueStatistics(dateBegin, dateEnd) {
+        return (await this.api('info').get(`/doanhthu/${dateBegin}/to/${dateEnd}`)).data   
+    }
 }
 
 export default new ServiceProvider()

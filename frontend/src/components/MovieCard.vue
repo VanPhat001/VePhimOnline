@@ -2,8 +2,8 @@
     <div class="movie-card">
         <div class="card w-100 h-100">
             <img :src="movie.Phim_poster" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title limit-2-rows">{{ movie.Phim_ten }}</h5>
+            <div class="card-body d-flex">
+                <h5 class="card-title mt-auto text-center limit-2-rows">{{ movie.Phim_ten }}</h5>
 
                 <div class="row">
                     <div class="col p-1">
@@ -49,5 +49,9 @@ export default {
     line-clamp: 2;
     -webkit-box-orient: vertical;
     height: 3rem;
+}
+
+.card-body {
+    flex-direction: column;
 }
 </style>

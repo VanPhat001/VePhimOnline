@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <router-link to="/" class="navbar-brand" href="#">Homepage</router-link>
+        <router-link to="/" class="navbar-brand" href="#">Trang chủ</router-link>
 
         <template v-if="loginAccount">
             <LoginAccountBox class="ml-auto"></LoginAccountBox>
