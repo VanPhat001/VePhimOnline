@@ -4,13 +4,18 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
-            loginAccount: null
+            loginAccount: null,
+            navbarSearchText: ''
         }
     },
 
     mutations: {
         setLoginAccount(state, value) {
             state.loginAccount = value
+        },
+
+        setNavbarSearchText(state, value) {
+            state.navbarSearchText = value
         }
     },
 

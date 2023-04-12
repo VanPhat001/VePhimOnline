@@ -6,6 +6,7 @@ const phimRouter = require('./phim.route')
 const suatChieuRouter = require('./suatChieu.route')
 const veRouter = require('./ve.route')
 const phongRouter = require('./phong.route')
+const rapRouter = require('./rap.route')
 const MySQL = require('../utils/MySQL')
 
 
@@ -14,6 +15,7 @@ router.use('/phim', phimRouter)
 router.use('/suatChieu', suatChieuRouter)
 router.use('/ve', veRouter)
 router.use('/phong', phongRouter)
+router.use('/rap', rapRouter)
 
 router.route('/info/movie/:movieId/timeFrom/:timeFrom')
     .get((req, res, next) => {
@@ -34,22 +36,16 @@ router.route('/info/movie/:movieId/timeFrom/:timeFrom')
             MySQL.executeQuery(queryString3)
         ]
 
-        console.log({ queryString1, queryString2, queryString3 })
-
-
         Promise.all(task1)
             .then(([phimResult, suatChieuResult, giaGheResult]) => {
                 queryResult.phimResult = phimResult
                 queryResult.suatChieuResult = suatChieuResult
                 queryResult.giaGheResult = giaGheResult
 
-                console.log({ queryResult })
-
-
-                const phongId = suatChieuResult[0].Phong_id
-                const suatChieuId = suatChieuResult[0].SC_id
-                const queryString4 = `select * from Phong where Phong_id=${phongId}`
-                const queryString5 = `select * from TrangThai where SC_id=${suatChieuId}`
+                const phongIds = suatChieuResult.map(sc => sc.Phong_id).join(',')
+                const suatChieuIds = suatChieuResult.map(sc => sc.SC_id).join(',')
+                const queryString4 = `select * from Phong where Phong_id in (${phongIds})`
+                const queryString5 = `select * from TrangThai where SC_id in (${suatChieuIds})`
 
                 const task2 = [
                     MySQL.executeQuery(queryString4),

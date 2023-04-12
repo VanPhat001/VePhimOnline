@@ -57,14 +57,15 @@ export default {
             selectGheInfo: {
                 row: -1,
                 col: -1
-            }
+            },
+            gheMatrix: []
         }
     },
 
     computed: {
         ghes() {
-            const data = [...this.pGhes]
-            return this.sortByRowCol(data)
+            let data = [...this.pGhes]
+            return  this.sortByRowCol(data)
         },
 
         trangThais() {
@@ -120,7 +121,7 @@ export default {
         },
 
         getGhe(row, col) {
-            return this.ghes[row * this.maxCol + col]
+            return this.gheMatrix[row][col]
         },
 
         getGiaGhe(loaiGhe) {
@@ -136,8 +137,9 @@ export default {
         },
 
         gheState(iPos, jPos) {
-            const ghe = this.ghes[(iPos-1)*this.maxCol + jPos - 1]
+            const ghe = this.gheMatrix[iPos - 1][jPos - 1]
             const key = this.getTrangThaiKey(ghe.Ghe_id, this.suatChieu.SC_id)
+            // console.log(this.trangThais)
             const state = this.trangThais.get(key).TT_trangThai
             return state
         },
@@ -184,6 +186,26 @@ export default {
                     alert('Có lỗi xảy ra, hãy thử lại thao tác này sau...')
                 })
         }
+    },
+
+    created() {
+        const matrix = []
+        for (let i = 0; i < this.maxRow; i++) {
+            matrix.push([])
+            for (let j = 0; j < this.maxCol; j++) {
+                matrix[i].push(null)
+            }
+        }
+
+        const phongId = this.suatChieu.Phong_id
+        this.ghes.forEach(ghe => {
+            if (ghe.Phong_id == phongId) {
+                const {Ghe_hang, Ghe_cot} = ghe
+                matrix[ (Ghe_hang).charCodeAt(0) - 'A'.charCodeAt(0) ][Ghe_cot - 1] = ghe
+            }
+        })
+
+        this.gheMatrix = matrix
     }
 }
 </script>

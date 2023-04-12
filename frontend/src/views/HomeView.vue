@@ -1,6 +1,6 @@
 <template>
     <div class="home-view movie-list">
-        <template v-for="movie in movies">
+        <template v-for="movie in moviesRender">
             <MovieCard :p-movie-info="movie" :p-image="''"></MovieCard>
         </template>
     </div>
@@ -15,7 +15,9 @@ import MovieCard from '../components/MovieCard.vue'
 export default {
     data() {
         return {
-            movies: []
+            moviesRender: [],
+            movies: [],
+            timeOutId: null
         }
     },
 
@@ -23,9 +25,37 @@ export default {
         MovieCard
     },
 
+    computed: {
+        navbarSearchText() {
+            return this.$store.state.navbarSearchText
+        }
+    },
+
+    watch: {
+        navbarSearchText(newValue) {
+            clearTimeout(this.timeOutId)
+            this.timeOutId = setTimeout(() => {
+                this.fillterMoviesToRender(newValue)
+            }, 500);
+        }
+    },
+
     methods: {
         formatDate(date) {
             return date.toISOString().split('T')[0]
+        },
+
+        fillterMoviesToRender(text) {
+            const regString = text.trim().split(' ').join('|')
+            const reg = new RegExp(regString, 'i')
+
+            const movies = []
+            this.movies.forEach(movie => {
+                if (reg.test(movie.Phim_ten)) {
+                    movies.push(movie)
+                }
+            })
+            this.moviesRender = movies
         }
     },
 
@@ -39,8 +69,15 @@ export default {
         const firstday = '2023-1-1'
         const lastday = '2024-1-1'
         servicesProvider.getAllSuatChieuByDate(firstday, lastday)
-            .then(data => {
-                this.movies = data
+            .then(movies => {
+                const map = new Map()
+                movies.forEach(movie => {
+                    if (!map.get(movie.Phim_id)) {
+                        map.set(movie.Phim_id, movie)
+                    }
+                })
+
+                this.moviesRender = this.movies = [...map.values()]
                 // for (let i = 0; i < 10; i++) {
                 //     this.movies.push(this.movies[3])
                 // }

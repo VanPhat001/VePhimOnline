@@ -1,7 +1,7 @@
 <template>
     <div class="add-show-time-view">
 
-        <form @submit.prevent="addShowtime">
+        <form @submit.prevent="addShowtime" v-if="cinemas">
 
             <input @keyup="fillMovie" type="text" class="my-4 w-100 p-2 form-control" placeholder="Nhập mã phim..."
                 v-model="showtime.movieId" required>
@@ -16,7 +16,7 @@
                             <select name="cars" id="cars" class="custom-select" v-model="showtime.roomId" required>
                                 <template v-for="(room, index) in rooms" :key="index">
                                     <option :value="room.Phong_id">
-                                        Rạp "{{ room.Rap_id }}" -
+                                        Rạp "{{ cinemas.get(room.Rap_id).Rap_ten  }}" -
                                         Phòng "{{ room.Phong_ten }}"
                                     </option>
                                 </template>
@@ -67,6 +67,7 @@ export default {
     data() {
         return {
             rooms: [],
+            cinemas: null,
             movie: null,
             showtime: {
                 roomId: null,
@@ -81,7 +82,7 @@ export default {
 
     computed: {
         defaultImage() {
-            return 'https://cdn-icons-png.flaticon.com/512/3934/3934107.png'
+            return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
         }
     },
 
@@ -153,17 +154,28 @@ export default {
     },
 
     created() {
-        serviceProvider.getAllPhong()
-            .then(response => {
-                this.rooms = response
+        const tasks = [
+            serviceProvider.getAllRap(),
+            serviceProvider.getAllPhong()
+        ]
+
+        Promise.all(tasks)
+            .then(([raps, phongs]) => {
+                const map = new Map()
+                raps.forEach(rap => {
+                    map.set(rap.Rap_id, rap)
+                })
+
+                this.cinemas = map
+                this.rooms = phongs
             })
             .catch(err => console.log(err))
 
-            const movieId = this.$route.query.movieId
-            if (movieId) {
-                this.showtime.movieId = movieId
-                this.fillMovie()
-            }
+        const movieId = this.$route.query.movieId
+        if (movieId) {
+            this.showtime.movieId = movieId
+            this.fillMovie()
+        }
     }
 }
 </script>

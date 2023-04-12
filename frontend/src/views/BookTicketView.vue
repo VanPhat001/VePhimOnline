@@ -53,8 +53,8 @@
             </div>
         </div>
 
-        <ModalByTicket v-if="showModal" :p-ghes="data.ghes" :p-trang-thais="data.trangthais" 
-            :p-suat-chieu="selectSuatChieu" :p-gia-ghes="data.giaGhes" @on-close-modal="onCloseModal"></ModalByTicket>
+        <ModalByTicket v-if="showModal" :p-ghes="data.ghes" :p-trang-thais="data.trangthais" :p-suat-chieu="selectSuatChieu"
+            :p-gia-ghes="data.giaGhes" @on-close-modal="onCloseModal"></ModalByTicket>
     </div>
 </template>
 
@@ -89,6 +89,8 @@ export default {
 
     methods: {
         onShowModal(index) {
+            // console.log(index)
+            // console.log(this.suatChieuRender[index])
             this.selectSuatChieu = this.suatChieuRender[index]
             this.showModal = true
         },
@@ -119,15 +121,19 @@ export default {
                     phongDisplay.push(phong.Phong_id)
                 }
             })
-            console.log({ phongDisplay })
+            // console.log({ phongDisplay })
 
             const suatChieuRender = []
             this.data.suatChieus.map(suatChieu => {
-                if (phongDisplay.includes(suatChieu.Phong_id) != -1) {
-                    suatChieuRender.push(suatChieu)
+                for (let i = 0; i < phongDisplay.length; i++) {
+                    const phongId = phongDisplay[i]
+                    if (phongId == suatChieu.Phong_id) {
+                        suatChieuRender.push(suatChieu)
+                        break
+                    }
                 }
             })
-            console.log({ suatChieuRender });
+            // console.log({ suatChieuRender });
 
             this.suatChieuRender = suatChieuRender
         },
@@ -180,7 +186,7 @@ export default {
                 this.data.suatChieus = response.suatChieuResult
                 this.data.phim = response.phimResult[0]
 
-                this.addTestData()
+                // this.addTestData()
 
                 console.log(response)
                 console.log(this.data)

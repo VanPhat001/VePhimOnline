@@ -72,9 +72,14 @@ class ServiceProvider {
         })).data
     }
 
+    async getAllRap() {
+        return (await this.api('rap').get('/')).data
+    }
+
     async revenueStatistics(dateBegin, dateEnd) {
         return (await this.api('info').get(`/doanhthu/${dateBegin}/to/${dateEnd}`)).data   
     }
+
 }
 
 export default new ServiceProvider()
