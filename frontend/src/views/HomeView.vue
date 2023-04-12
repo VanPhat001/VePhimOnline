@@ -1,8 +1,8 @@
 <template>
-    <div class="home-view">
-            <template v-for="movie in movies">
-                <MovieCard :p-movie-info="movie" :p-image="''"></MovieCard>
-            </template>
+    <div class="home-view movie-list">
+        <template v-for="movie in movies">
+            <MovieCard :p-movie-info="movie" :p-image="''"></MovieCard>
+        </template>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ import MovieCard from '../components/MovieCard.vue'
 export default {
     data() {
         return {
-           movies: []
+            movies: []
         }
     },
 
@@ -29,7 +29,7 @@ export default {
         }
     },
 
-     created() {
+    created() {
         // const curr = new Date
         // let firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()))
         // let lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6))
@@ -51,5 +51,15 @@ export default {
 
 
 <style lang="scss" scoped>
-    
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .movie-card {
+        flex: 0 0 calc(100% /4);
+        // width: calc(100% / 4);
+        display: inline-block;
+        padding: 12px 4px 4px;
+    }
+}
 </style>

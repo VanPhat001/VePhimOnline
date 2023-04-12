@@ -1,6 +1,6 @@
 <template>
-    <div class="movie-card d-inline-block w-25 p-1">
-        <div class="card w-100">
+    <div class="movie-card">
+        <div class="card w-100 h-100">
             <img :src="movie.Phim_poster" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title limit-2-rows">{{ movie.Phim_ten }}</h5>
