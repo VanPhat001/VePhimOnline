@@ -1,9 +1,10 @@
 <template>
     <div class="add-show-time-view">
 
-        <form @submit.prevent="">
+        <form @submit.prevent="addShowtime">
 
-            <input type="text" class="my-4 w-100 p-2 form-control" placeholder="Nhập mã phim..." required>
+            <input @keyup="fillMovie" type="text" class="my-4 w-100 p-2 form-control" placeholder="Nhập mã phim..."
+                v-model="showtime.movieId" required>
 
             <div class="row">
                 <div class="col">
@@ -50,7 +51,7 @@
                 </div>
 
                 <div class="col-4">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3934/3934107.png" alt=".." class="w-100">
+                    <img :src="movie?.Phim_poster || defaultImage" alt=".." class="w-100">
                 </div>
             </div>
         </form>
@@ -60,19 +61,94 @@
 
 
 <script>
-import serviceProvider from '../services';
+import serviceProvider from '../services'
 
 export default {
     data() {
         return {
             rooms: [],
+            movie: null,
             showtime: {
                 roomId: null,
                 movieId: null,
                 dateTimeStart: null,
                 dateTimeEnd: null,
                 price: null
+            },
+            timeOutId: null
+        }
+    },
+
+    computed: {
+        defaultImage() {
+            return 'https://cdn-icons-png.flaticon.com/512/3934/3934107.png'
+        }
+    },
+
+    methods: {
+        convertToDateTimeString(dateTime) {
+            const date = new Date(dateTime)
+            const currentString = date.getFullYear() + '-' +
+                ('00' + (date.getMonth() + 1)).slice(-2) + '-' +
+                ('00' + date.getDate()).slice(-2) + ' ' +
+                ('00' + date.getHours()).slice(-2) + ':' +
+                ('00' + date.getMinutes()).slice(-2) + ':' +
+                ('00' + date.getSeconds()).slice(-2)
+            return currentString
+        },
+
+        fillMovie() {
+            clearTimeout(this.timeOutId)
+            this.timeOutId = setTimeout(() => {
+                serviceProvider.getPhimById(this.showtime.movieId)
+                    .then(response => {
+
+                        if (response.length > 0) {
+                            this.movie = response[0]
+                        }
+                        else {
+                            this.movie = null
+                        }
+
+                    })
+                    .catch(err => console.log(err))
+            }, 500)
+        },
+
+        addShowtime() {
+
+            if (!(this.movie && this.movie.Phim_id == this.showtime.movieId)) {
+                alert('Mã phim không hợp lệ!!!')
+                return
             }
+
+            if (this.showtime.dateTimeStart >= this.showtime.dateTimeEnd) {
+                alert('Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc!!!')
+                return
+            }
+
+            const data = {
+                Phong_id: this.showtime.roomId,
+                Phim_id: this.showtime.movieId,
+                SC_batDau: this.convertToDateTimeString(this.showtime.dateTimeStart),
+                SC_ketThuc: this.convertToDateTimeString(this.showtime.dateTimeEnd),
+                SC_gia: this.showtime.price,
+            }
+            console.log(data)
+
+            serviceProvider.insertSuatChieu(data)
+                .then(response => {
+                    console.log(response)
+                    alert('Thêm suất chiếu thành công!!!')
+                    // this.$router.push({ name: 'home' })
+                })
+                .catch(err => {
+                    if (err.response.status == 500) {
+                        alert('Đã có suất chiếu có trùng (mã phim, mã phòng, thời gian bắt đầu) !!!')
+                    }
+                })
+
+
         }
     },
 
@@ -82,6 +158,12 @@ export default {
                 this.rooms = response
             })
             .catch(err => console.log(err))
+
+            const movieId = this.$route.query.movieId
+            if (movieId) {
+                this.showtime.movieId = movieId
+                this.fillMovie()
+            }
     }
 }
 </script>

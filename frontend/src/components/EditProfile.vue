@@ -11,45 +11,45 @@
             <div class="row mt-3">
                 <div class="col">
                     <label for="">Họ tên</label>
-                    <input type="text" required v-model="editAccount.CN_hoTen">
+                    <input class="form-control" type="text" required v-model="editAccount.CN_hoTen">
                 </div>
             
                 <div class="col">
                     <label for="">Thành phố</label>
-                    <input type="text" required v-model="editAccount.CN_thanhPho">
+                    <input class="form-control" type="text" required v-model="editAccount.CN_thanhPho">
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col">
                     <label for="">Ngày sinh</label>
-                    <input type="date" required v-model="editAccount.CN_ngaySinh">
+                    <input class="form-control" type="date" required v-model="editAccount.CN_ngaySinh">
                 </div>
            
                 <div class="col">
                     <label for="">Số điện thoại</label>
-                    <input type="text" required v-model="editAccount.CN_sdt">
+                    <input class="form-control" type="text" required v-model="editAccount.CN_sdt">
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col">
                     <label for="">Tài khoản</label>
-                    <input type="text" required disabled v-model="editAccount.CN_userName">
+                    <input class="form-control" type="text" required disabled v-model="editAccount.CN_userName">
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col">
                     <label for="">Mật khẩu</label>
-                    <input type="password" required v-model="editAccount.CN_passWord">
+                    <input class="form-control" type="password" required v-model="editAccount.CN_passWord">
                 </div>
             </div>
 
             <!-- <div class="row mt-3">
                 <div class="col">
                     <label for="">Xác nhận mật khẩu</label>
-                    <input type="password" required>
+                    <input class="form-control" type="password" required>
                 </div>
             </div> -->
 

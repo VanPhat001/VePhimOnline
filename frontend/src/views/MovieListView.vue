@@ -33,7 +33,7 @@
                         {{ movie.Phim_theLoai }}
                     </td>
                     <td class="align-middle text-right">
-                        <router-link :to="{ name: 'add-showtime' }" class="btn btn-primary">Thêm suất chiếu</router-link>
+                        <router-link :to="{ name: 'add-showtime', query: { movieId: movie.Phim_id } }" class="btn btn-primary">Thêm suất chiếu</router-link>
                     </td>
                 </tr>
 

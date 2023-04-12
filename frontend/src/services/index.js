@@ -15,27 +15,33 @@ class ServiceProvider {
         return (await this.api('account').get(`/${id}`)).data
     }
 
-    async createAccount({name, city, dateOfBirth, username, password, phoneNumber, role='user', avatar}) {
+    async createAccount({ name, city, dateOfBirth, username, password, phoneNumber, role = 'user', avatar }) {
         return (await this.api('account').post('/', {
             name, city, dateOfBirth, username, password, phoneNumber, role, avatar
         })).data
     }
 
-    async updateAccount(id, {name, city, dateOfBirth, username, password, phoneNumber, role, avatar}) {
+    async updateAccount(id, { name, city, dateOfBirth, username, password, phoneNumber, role, avatar }) {
         return (await this.api('account').patch(`/${id}`, {
-            CN_hoTen : name, 
-            CN_thanhPho : city, 
-            CN_ngaySinh : dateOfBirth, 
-            CN_userName: username, 
-            CN_passWord : password, 
-            CN_sdt : phoneNumber, 
-            CN_phanQuyen : role, 
-            CN_avatar : avatar,
+            CN_hoTen: name,
+            CN_thanhPho: city,
+            CN_ngaySinh: dateOfBirth,
+            CN_userName: username,
+            CN_passWord: password,
+            CN_sdt: phoneNumber,
+            CN_phanQuyen: role,
+            CN_avatar: avatar,
         })).data
     }
 
     async getAllSuatChieuByDate(dateFrom, dateTo) {
         return (await this.api('suatChieu').get(`/${dateFrom}/to/${dateTo}`)).data
+    }
+
+    async insertSuatChieu({ Phong_id, Phim_id, SC_batDau, SC_ketThuc, SC_gia }) {
+        return (await this.api('suatChieu').post('/', {
+            Phong_id, Phim_id, SC_batDau, SC_ketThuc, SC_gia
+        })).data
     }
 
     async getPhimById(movieId) {
@@ -60,7 +66,7 @@ class ServiceProvider {
         })).data
     }
 
-    async insertVe({Ve_thoiGianDat, CN_id, Ghe_id, SC_id}) {
+    async insertVe({ Ve_thoiGianDat, CN_id, Ghe_id, SC_id }) {
         return (await this.api('ve').post('/', {
             Ve_thoiGianDat, CN_id, Ghe_id, SC_id
         })).data
