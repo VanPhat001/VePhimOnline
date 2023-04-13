@@ -6,12 +6,12 @@
         <table class="table">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col" class="text-center">#</th>
-                    <th scope="col">Poster</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Độ tuổi</th>
-                    <th scope="col">Thể loại</th>
-                    <th scope="col"></th>
+                    <th nowrap="nowrap" scope="col" class="text-center">#</th>
+                    <th nowrap="nowrap" scope="col">Poster</th>
+                    <th nowrap="nowrap" scope="col">Tên</th>
+                    <th nowrap="nowrap" scope="col">Độ tuổi</th>
+                    <th nowrap="nowrap" scope="col">Thể loại</th>
+                    <th nowrap="nowrap" scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +26,10 @@
                     <td class="align-middle">
                         {{ movie.Phim_ten }}
                     </td>
-                    <td class="align-middle">
+                    <td class="align-middle text-center">
                         {{ movie.Phim_doTuoi }}
                     </td>
-                    <td class="align-middle">
+                    <td class="align-middle text-center">
                         {{ movie.Phim_theLoai }}
                     </td>
                     <td class="align-middle text-right">

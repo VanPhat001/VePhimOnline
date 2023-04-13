@@ -19,10 +19,10 @@
 
             <div class="row">
                 <div class="col">
-                    <p><b>Giá phim:</b> {{ suatChieu.SC_gia }}&#8363;</p>
+                    <p><b>Giá phim:</b> {{ formatCurrency(suatChieu.SC_gia) }}&#8363;</p>
                     <template v-if="selectGheInfo.row != -1">
                         <p><b>Giá ghế:</b>
-                            {{  getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai ) }}&#8363;
+                            {{  formatCurrency(getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai )) }}
                             ({{  getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai }})
                         </p>
                         <p><b>Vị trí:</b> {{ String.fromCharCode(selectGheInfo.row + 65) }}{{ selectGheInfo.col + 1}}</p>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col" v-if="selectGheInfo.row != -1">
-                    <p><b>Tổng tiền:</b> {{ suatChieu.SC_gia +  getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai ) }}&#8363;</p>
+                    <p><b>Tổng tiền:</b> {{ formatCurrency(suatChieu.SC_gia +  getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai )) }}&#8363;</p>
                     <button @click.prevent="bookTicket" class="btn btn-primary px-5">Đặt vé</button>
                 </div>
             </div>
@@ -41,6 +41,7 @@
 
 <script>
 import serviceProvider from '../services'
+import utils from "../utils/public.util";
 
 export default {
     emits: ['onCloseModal'],
@@ -106,6 +107,8 @@ export default {
     },
 
     methods: {
+        formatCurrency: utils.formatCurrency,
+
         onCloseModal() {
             this.$emit('onCloseModal')
         },

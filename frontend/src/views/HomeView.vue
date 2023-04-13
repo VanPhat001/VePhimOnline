@@ -10,6 +10,7 @@
 <script>
 import servicesProvider from '../services'
 import MovieCard from '../components/MovieCard.vue'
+import utils from '../utils/public.util';
 
 
 export default {
@@ -41,9 +42,7 @@ export default {
     },
 
     methods: {
-        formatDate(date) {
-            return date.toISOString().split('T')[0]
-        },
+        formatDate: utils.formatDateToYearMonDay,
 
         fillterMoviesToRender(text) {
             const regString = text.trim().split(' ').join('|')
@@ -60,13 +59,13 @@ export default {
     },
 
     created() {
-        // const curr = new Date
-        // let firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()))
+        const curr = new Date
+        let firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()))
         // let lastday = new Date(curr.setDate(curr.getDate() - curr.getDay()+6))
-        // firstday = this.formatDate(firstday)
+        firstday = this.formatDate(firstday)
         // lastday = this.formatDate(lastday)
 
-        const firstday = '2023-1-1'
+        // const firstday = '2023-1-1'
         const lastday = '2024-1-1'
         servicesProvider.getAllSuatChieuByDate(firstday, lastday)
             .then(movies => {

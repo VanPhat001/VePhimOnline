@@ -2,7 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <router-link to="/" class="navbar-brand" href="#">Trang chủ</router-link>
 
-        <input type="text" class="form-control mx-5" placeholder="Nhập tên phim cần tìm..." v-model="searchText">
+        <input type="text" class="form-control mx-5" 
+            placeholder="Nhập tên phim cần tìm..." v-model="searchText"
+            v-show="$route.name == 'home'">
 
         <template v-if="loginAccount">
             <LoginAccountBox class="ml-auto"></LoginAccountBox>
@@ -24,7 +26,7 @@ export default {
         }
     },
 
-    watch:   {
+    watch: {
         searchText(newValue) {
             this.$store.commit('setNavbarSearchText', newValue)
         }

@@ -13,6 +13,7 @@
                 <table class="table mt-4">
                     <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Tên phòng</th>
                             <th scope="col">Ngày chiếu</th>
                             <th scope="col">Bắt đầu</th>
@@ -29,11 +30,12 @@
                         </tr>
 
                         <tr v-for="(suatChieu, index) in suatChieuRender" :key="index">
-                            <th class="align-middle" scope="row"> {{ data.phongs.get(suatChieu.Phong_id).Phong_ten }} </th>
+                            <th class="align-middle"> {{ index + 1 }} </th>
+                            <td class="align-middle" scope="row"> {{ data.phongs.get(suatChieu.Phong_id).Phong_ten }} </td>
                             <td class="align-middle">{{ formatDateTime(suatChieu.SC_batDau).date }}</td>
                             <td class="align-middle">{{ formatDateTime(suatChieu.SC_batDau).time }}</td>
                             <td class="align-middle">{{ formatDateTime(suatChieu.SC_ketThuc).time }}</td>
-                            <td class="align-middle">{{ suatChieu.SC_gia }}&#8363;</td>
+                            <td class="align-middle">{{ formatCurrency(suatChieu.SC_gia) }}</td>
                             <td class="align-middle text-right"><button class="btn btn-primary"
                                     @click="onShowModal(index)">Đặt vé</button></td>
                         </tr>
@@ -62,7 +64,8 @@
 
 <script>
 import servicesProvider from '../services'
-import ModalByTicket from '../components/ModalByTicket.vue';
+import ModalByTicket from '../components/ModalByTicket.vue'
+import utils from '../utils/public.util';
 
 export default {
     components: {
@@ -88,6 +91,8 @@ export default {
     },
 
     methods: {
+        formatCurrency: utils.formatCurrency,
+
         onShowModal(index) {
             // console.log(index)
             // console.log(this.suatChieuRender[index])

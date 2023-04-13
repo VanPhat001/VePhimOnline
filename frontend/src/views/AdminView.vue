@@ -17,19 +17,19 @@ export default {
             links: [
                 {
                     name: 'movie-list',
-                    displayName: 'Movie List'
+                    displayName: 'Danh sách phim'
                 },
                 {
                     name: 'add-movie',
-                    displayName: 'Add Movie'
+                    displayName: 'Thêm phim'
                 },
                 {
                     name: 'add-showtime',
-                    displayName: 'Add Showtime'
+                    displayName: 'Thêm suất chiếu'
                 },
                 {
                     name: 'statistic',
-                    displayName: 'Statistic'
+                    displayName: 'Thống kê'
                 },
             ],
         }

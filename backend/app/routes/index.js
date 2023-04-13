@@ -88,6 +88,7 @@ router.route('/info/doanhthu/:dateBegin/to/:dateEnd')
         console.log('[GET] call revenueStatistics()');
         const { dateBegin, dateEnd } = req.params
         const queryString = `call revenueStatistics('${dateBegin}', '${dateEnd}')`
+        console.log(queryString);
 
         try {
             const result = await MySQL.executeQuery(queryString)
