@@ -80,6 +80,9 @@ class ServiceProvider {
         return (await this.api('info').get(`/doanhthu/${dateBegin}/to/${dateEnd}`)).data   
     }
 
+    async getTicketStorage(CN_id) {
+        return (await this.api('ve').get(`/${CN_id}`)).data
+    }
 }
 
 export default new ServiceProvider()

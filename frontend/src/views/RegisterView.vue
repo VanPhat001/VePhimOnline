@@ -7,7 +7,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="fullname">Họ tên</label>
-                        <Field name="fullname" type="text" v-model="fullname" />
+                        <Field name="fullname" type="text" class="form-control" v-model="fullname" />
                         <ErrorMessage name="fullname" class="data-error" />
                     </div>
                 </div>
@@ -15,13 +15,13 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="city">Thành phố</label>
-                        <Field name="city" type="text" v-model="city" />
+                        <Field class="form-control" name="city" type="text" v-model="city" />
                         <ErrorMessage name="city" class="data-error" />
                     </div>
 
                     <div class="col">
                         <label for="dateOfBirth">Ngày sinh</label>
-                        <Field name="dateOfBirth" type="date" v-model="dateOfBirth" />
+                        <Field class="form-control" name="dateOfBirth" type="date" v-model="dateOfBirth" />
                         <ErrorMessage name="dateOfBirth" class="data-error" />
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="phoneNumber">Số điện thoại</label>
-                        <Field name="phoneNumber" type="text" v-model="phoneNumber" />
+                        <Field class="form-control" name="phoneNumber" type="text" v-model="phoneNumber" />
                         <ErrorMessage name="phoneNumber" class="data-error" />
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="username">Tài khoản:</label>
-                        <Field name="username" type="text" v-model="username" />
+                        <Field class="form-control" name="username" type="text" v-model="username" />
                         <ErrorMessage name="username" class="data-error" />
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="password">Mật khẩu:</label>
-                        <Field name="password" type="password" v-model="password" />
+                        <Field class="form-control" name="password" type="password" v-model="password" />
                         <ErrorMessage name="password" class="data-error" />
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label for="password2">Nhập lại mật khẩu:</label>
-                        <Field name="password2" type="password" v-model="password2" />
+                        <Field class="form-control" name="password2" type="password" v-model="password2" />
                         <ErrorMessage name="password2" class="data-error" />
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="row mt-5">
                     <div class="col">
                         <button class="btn py-2 px-4 btn-primary" type="submit">Đăng ký</button>
-                        <button class="btn py-2 px-4 btn-secondary ml-1" type="reset">Reset</button>
+                        <button class="btn py-2 px-4 btn-secondary ml-1" type="reset">Huỷ</button>
                     </div>
                 </div>
             </form>

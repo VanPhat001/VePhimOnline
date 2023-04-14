@@ -5,10 +5,13 @@
             <img width="36" class="rounded-circle" :src="loginAccount.CN_avatar" alt="">
         </button>
         <div class="dropdown-menu">
-            <router-link v-if="loginAccount.CN_phanQuyen === 'admin'" :to="{name: 'admin'}" class="dropdown-item">Trang quản trị</router-link>
-            <router-link :to="{name: 'edit-profile'}" class="dropdown-item">Chỉnh sửa hồ sơ</router-link>
+            <router-link v-if="loginAccount.CN_phanQuyen === 'admin'" :to="{ name: 'admin' }" class="dropdown-item">Trang quản
+                trị</router-link>
+            <router-link :to="{ name: 'edit-profile' }" class="dropdown-item">Chỉnh sửa hồ sơ</router-link>
+            <router-link :to="{ name: 'ticket-storage' }" class="dropdown-item"
+                v-if="$store.state.loginAccount.CN_phanQuyen == 'user'">Vé đã đặt</router-link>
             <div class="dropdown-divider"></div>
-            <router-link :to="{name: 'home'}" @click="logoutAccount" class="dropdown-item">Đăng xuất</router-link>
+            <router-link :to="{ name: 'home' }" @click="logoutAccount" class="dropdown-item">Đăng xuất</router-link>
         </div>
     </div>
 </template>

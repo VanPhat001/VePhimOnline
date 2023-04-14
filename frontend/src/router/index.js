@@ -18,6 +18,11 @@ const routes = [
 		component: () => import('../views/RegisterView.vue')
 	},
 	{
+		path: '/ticket/storage',
+		name: 'ticket-storage',
+		component: () => import('../views/TicketStorageView.vue')
+	},
+	{
 		path: '/admin',
 		name: 'admin',
 		component: () => import('../views/AdminView.vue'),

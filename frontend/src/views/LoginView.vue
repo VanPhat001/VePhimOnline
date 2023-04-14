@@ -1,24 +1,24 @@
 <template>
-    <div class="login-view">
-        <form class="m-5" @submit.prevent="loginAccount">
+    <div class="login-view d-flex justify-content-center">
+        <form class="m-5 w-75 border rounded p-5" @submit.prevent="loginAccount">
             <h3>Đăng nhập</h3>
 
             <div class="row mt-3">
                 <div class="col">
-                    <label for="login-username">username</label>
-                    <input type="text" id="login-username" v-model="username">
+                    <label for="login-username">Tài khoản</label>
+                    <input type="text" class="form-control w-100" id="login-username" v-model="username">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col">
-                    <label for="login-password">password</label>
-                    <input type="password" id="login-password" v-model="password">
+                    <label for="login-password">Mật khẩu</label>
+                    <input type="password" class="form-control w-100" id="login-password" v-model="password">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col">
                     <button class="btn py-2 px-4 btn-primary" type="submit">Đăng nhập</button>
-                    <button class="btn py-2 px-4 btn-secondary ml-1" type="reset">Reset</button>
+                    <button class="btn py-2 px-4 btn-secondary ml-1" type="reset">Huỷ</button>
                 </div>
             </div>
         </form>

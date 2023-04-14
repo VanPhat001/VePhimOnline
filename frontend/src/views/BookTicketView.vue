@@ -195,6 +195,8 @@ export default {
 
                 console.log(response)
                 console.log(this.data)
+
+                this.setSelectRapIndex(0)
             })
             .catch(err => console.log(err))
     },

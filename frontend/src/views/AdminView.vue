@@ -45,6 +45,12 @@ export default {
         classObject(name) {
             return name == this.routerName ? {'btn-primary': true} : {'btn-secondary': true}
         }
+    },
+
+    created() {
+        // if (this.$store.stage.loginAccount.CN_phanQuyen === 'user') {
+        //     this.$router.push({ name: 'home' })
+        // }
     }
 }
 </script>
