@@ -1,7 +1,7 @@
 <template>
     <div class="ticket-storage" v-if="data">
 
-        <table class="table">
+        <table class="table mt-3">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Mã vé</th>

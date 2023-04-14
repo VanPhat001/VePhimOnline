@@ -15,12 +15,8 @@
                     <p><span class="font-weight-bold">Mã phim:</span> <span>{{ movie.Phim_id }}</span></p>
                     <hr>
                     <router-link class="btn btn-primary px-5" :to="{name: 'book-ticket', params: { movieId: movie.Phim_id }}">Đặt vé</router-link>
-                </div>
-            </div>
 
-            <div class="row mt-3">
-                <div class="col"> 
-                    <p>{{ movie.Phim_moTa }}</p>    
+                    <p class="mt-4">{{ movie.Phim_moTa }}</p>    
                 </div>
             </div>
         </template>

@@ -3,11 +3,16 @@
 
         <form @submit.prevent="addShowtime" v-if="cinemas">
 
-            <input @keyup="fillMovie" type="text" class="my-4 w-100 p-2 form-control" placeholder="Nhập mã phim..."
-                v-model="showtime.movieId" required>
-
+            
             <div class="row">
                 <div class="col">
+                    
+                    <div class="row mt-3">
+                        <div class="col">
+                            <input @keyup="fillMovie" type="text" class="my-4 w-100 p-2 form-control" placeholder="Nhập mã phim..."
+                                v-model="showtime.movieId" required>
+                        </div>
+                    </div>
 
                     <div class="row mt-3">
                         <div class="col">
@@ -50,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-4 mt-2">
                     <img :src="movie?.Phim_poster || defaultImage" alt=".." class="w-100">
                 </div>
             </div>

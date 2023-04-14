@@ -196,10 +196,21 @@ export default {
                 console.log(response)
                 console.log(this.data)
 
-                this.setSelectRapIndex(0)
+                // this.selectRapIndex(0)
             })
             .catch(err => console.log(err))
     },
+
+    mounted() {
+        const intervalId = setInterval(() => {
+            try {
+                this.setSelectRapIndex(0)
+                clearInterval(intervalId)
+            } catch (error) {
+                console.log(error)
+            }
+        }, 100);
+    }
 }
 </script>
 
