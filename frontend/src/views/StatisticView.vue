@@ -42,6 +42,13 @@
                             <td>{{ (info.doanh_thu / totalRevenue * 100).toFixed(2) }}%</td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr class="text-center">
+                            <th scope="row" class="h5" colspan="2">Tổng doanh thu</th>
+                            <td class="h5">{{ formatCurrency(totalRevenue) }}</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
 
             </div>
@@ -163,8 +170,7 @@ export default {
         },
 
         onStatisticButtonClick() {
-            if (Date.parse(this.timeStartString) > Date.parse(this.timeEndString))
-            {
+            if (Date.parse(this.timeStartString) > Date.parse(this.timeEndString)) {
                 alert('Time start must be less than time end')
                 return
             }

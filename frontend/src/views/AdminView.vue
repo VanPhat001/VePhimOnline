@@ -11,6 +11,7 @@
 
 
 <script>
+
 export default {
     data() {
         return {
@@ -38,6 +39,10 @@ export default {
     computed: {
         routerName() {
             return this.$route.name
+        },
+
+        loginAccount() {
+            return this.$store.state.loginAccount
         }
     },
 
@@ -48,9 +53,9 @@ export default {
     },
 
     created() {
-        // if (this.$store.stage.loginAccount.CN_phanQuyen === 'user') {
-        //     this.$router.push({ name: 'home' })
-        // }
+        if (this.loginAccount?.CN_phanQuyen !== 'admin') {
+            this.$router.push({ name: 'home' })
+        }
     }
 }
 </script>

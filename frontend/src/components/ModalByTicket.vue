@@ -19,7 +19,7 @@
 
             <div class="row">
                 <div class="col">
-                    <p><b>Giá phim:</b> {{ formatCurrency(suatChieu.SC_gia) }}&#8363;</p>
+                    <p><b>Giá phim:</b> {{ formatCurrency(suatChieu.SC_gia) }}</p>
                     <template v-if="selectGheInfo.row != -1">
                         <p><b>Giá ghế:</b>
                             {{  formatCurrency(getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai )) }}
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col" v-if="selectGheInfo.row != -1">
-                    <p><b>Tổng tiền:</b> {{ formatCurrency(suatChieu.SC_gia +  getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai )) }}&#8363;</p>
+                    <p><b>Tổng tiền:</b> {{ formatCurrency(suatChieu.SC_gia +  getGiaGhe( getGhe(selectGheInfo.row, selectGheInfo.col).GG_loai )) }}</p>
                     <button @click.prevent="bookTicket" class="btn btn-primary px-5">Đặt vé</button>
                 </div>
             </div>

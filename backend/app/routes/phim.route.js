@@ -20,6 +20,7 @@ router.route('/')
 
         try {
             const queryString = `call insertPhim('${Phim_ten}', ${Phim_doTuoi}, '${Phim_moTa}', '${Phim_theLoai}', '${Phim_poster}')`
+            console.log(queryString);
             const result = await MySQL.executeQuery(queryString)
             res.send(result)
         } catch (error) {

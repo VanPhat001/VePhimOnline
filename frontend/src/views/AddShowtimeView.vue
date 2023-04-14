@@ -2,7 +2,6 @@
     <div class="add-show-time-view">
 
         <form @submit.prevent="addShowtime" v-if="cinemas">
-
             
             <div class="row">
                 <div class="col">

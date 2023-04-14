@@ -90,6 +90,12 @@ export default {
         }
     },
 
+    computed: {
+        loginAccount() {
+            return this.$store.state.loginAccount
+        }
+    },
+
     methods: {
         formatCurrency: utils.formatCurrency,
 
@@ -170,6 +176,11 @@ export default {
     },
 
     created() {
+        if (this.loginAccount === null) {
+            alert('Cần đăng nhập trước khi đặt vé!!!')
+            this.$router.back()
+        }
+
         servicesProvider.getPhimInfoToBookTicket(this.$route.params.movieId, this.getCurrentTimeString())
             .then(response => {
                 response.giaGheResult.forEach(item => {
