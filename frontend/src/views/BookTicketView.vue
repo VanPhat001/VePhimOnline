@@ -172,6 +172,14 @@ export default {
             for (let i = 0; i < 30; i++)
                 this.data.suatChieus.push(this.data.suatChieus[0])
             // test data end
+        },
+
+        getAgeOfUser(dateOfBirth) {
+            const month_diff = Date.now() - dateOfBirth
+            const age_dt = new Date(month_diff)
+            const year = age_dt.getUTCFullYear()
+            const age = Math.abs(year - 1970)
+            return age
         }
     },
 
@@ -201,6 +209,15 @@ export default {
                 this.data.raps = response.rapResult
                 this.data.suatChieus = response.suatChieuResult
                 this.data.phim = response.phimResult[0]
+
+                const dateOfBirth = new Date(this.loginAccount.CN_ngaySinh)
+                const limitAge = this.data.phim.Phim_doTuoi
+                if (this.getAgeOfUser(dateOfBirth) < limitAge) {
+                    alert(`Bạn cần ít nhất ${limitAge} tuổi để có thể đặt vé.`)
+                    this.$router.back()
+                }
+
+
 
                 // this.addTestData()
 

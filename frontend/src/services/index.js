@@ -1,4 +1,5 @@
-import utils from '../utils';
+import axios from 'axios'
+import utils from '../utils'
 
 class ServiceProvider {
     constructor() {
@@ -64,6 +65,10 @@ class ServiceProvider {
         return (await this.api('phim').post('/', {
             Phim_ten, Phim_doTuoi, Phim_moTa, Phim_theLoai, Phim_poster
         })).data
+    }
+
+    async deletePhim(movieId) {
+        return (await this.api('phim').delete(`/${movieId}`)).data
     }
 
     async insertVe({ Ve_thoiGianDat, CN_id, Ghe_id, SC_id }) {

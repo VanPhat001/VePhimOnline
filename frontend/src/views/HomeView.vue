@@ -3,6 +3,10 @@
         <template v-for="movie in moviesRender">
             <MovieCard :p-movie-info="movie" :p-image="''"></MovieCard>
         </template>
+
+        <template v-if="moviesRender.length == 0">
+                Không có thông tin
+        </template>
     </div>
 </template>
 

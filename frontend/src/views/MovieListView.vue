@@ -12,6 +12,7 @@
                     <th nowrap="nowrap" scope="col">Độ tuổi</th>
                     <th nowrap="nowrap" scope="col">Thể loại</th>
                     <th nowrap="nowrap" scope="col"></th>
+                    <th nowrap="nowrap" scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,11 @@
                     </td>
                     <td class="align-middle text-right">
                         <router-link :to="{ name: 'add-showtime', query: { movieId: movie.Phim_id } }" class="btn btn-primary">Thêm suất chiếu</router-link>
+                    </td>
+                    <td class="align-middle text-right">
+                        <button class="btn btn-danger" @click="onRemoveMovie(index)">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
 
@@ -68,6 +74,23 @@ export default {
                     }
                 })
             }, 500);
+        },
+
+        onRemoveMovie(movieIndex) {
+            const movieId = this.movies[movieIndex].Phim_id
+
+            serviceProvider.deletePhim(movieId)
+                .then(response => {
+                    // console.log(response)
+                    alert('Xoá thành công!!!')
+                    this.movies.splice(movieIndex, 1)
+                })
+                .catch(err => {
+                    console.log(err)
+                    if (err.response.status == 500) {
+                        alert('Xoá khoá ngoại suất chiếu trước khi thực hiện thao tác này!!!')
+                    }
+                })
         }
     },
 
@@ -81,4 +104,6 @@ export default {
     }
 }
 </script>
+
+
 <style lang="scss" scoped></style>

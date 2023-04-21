@@ -40,5 +40,17 @@ router.route('/:id')
             next(error)
         }
     })
+    .delete(async (req, res, next) => {
+        console.log('[DELETE] delete phim by id')
+        const {id: Phim_id} = req.params
+
+        try {
+            const queryString = `delete from Phim where Phim_id = ${Phim_id}`
+            const result = await MySQL.executeQuery(queryString)
+            res.send(result)
+        } catch (error) {
+            next(error)
+        }
+    })
 
 module.exports = router
